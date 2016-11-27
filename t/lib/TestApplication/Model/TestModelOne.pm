@@ -32,4 +32,6 @@ __PACKAGE__->model_filter(
 
 sub check {'MODEL ONE'}
 
+sub init {$_[0]->{'__MODEL_ONE__'} = 'MODEL ONE'}
+
 TRUE;

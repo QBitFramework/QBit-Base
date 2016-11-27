@@ -2,6 +2,8 @@ package QBit::Base;
 
 use qbit;
 
+use QBit::Class;
+
 if ($] < 5.008) {
     *_module_to_filename = sub {
         (my $fn = $_[0]) =~ s!::!/!g;
@@ -42,8 +44,10 @@ sub import {
         no strict 'refs';
         push @{"$package_heir\::ISA"}, @bases;
 
-        *{"${package_heir}::init"} = sub {
-            my ($self) = @_;
+        *{"${package_heir}::new"} = sub {
+            my ($class, %opts) = @_;
+
+            my $self = QBit::Class::new($class, %opts);
 
             my $stash = package_stash($package_heir);
 
@@ -72,6 +76,8 @@ sub import {
             $self->model_fields(%{$stash->{'__MODEL_FIELDS__'}}) if $self->can('model_fields');
             #it's do not working with multistate_graph
             #$self->multistate_graph(...)
+
+            return $self;
         };
     }
 }

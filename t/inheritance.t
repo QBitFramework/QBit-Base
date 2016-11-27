@@ -19,6 +19,10 @@ $app->pre_run();
 is(ref($app->model_one), 'TestApplication::Model::TestModelOne', 'model one name');
 is(ref($app->model_two), 'TestApplication::Model::TestModelTwo', 'model two name');
 
+is($app->model_one->{'__MODEL_ONE__'}, 'MODEL ONE', 'model one init');
+is($app->model_two->{'__MODEL_ONE__'}, 'MODEL ONE', 'model two SUPER::init');
+is($app->model_two->{'__MODEL_TWO__'}, 'MODEL TWO', 'model two init');
+
 is($app->model_one->check, 'MODEL ONE', 'model one method');
 is($app->model_two->check, 'MODEL TWO', 'model two method');
 

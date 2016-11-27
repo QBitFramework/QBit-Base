@@ -34,4 +34,6 @@ __PACKAGE__->model_filter(
 
 sub check {'MODEL TWO'}
 
+sub init {$_[0]->{'__MODEL_TWO__'} = 'MODEL TWO'; $_[0]->SUPER::init();}
+
 TRUE;

@@ -56,4 +56,6 @@ __PACKAGE__->multistates_graph(
 
 sub check {'MODEL'}
 
+sub init {$_[0]->{'__MODEL__'} = 'MODEL'}
+
 TRUE;
