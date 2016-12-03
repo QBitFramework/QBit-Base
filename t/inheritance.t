@@ -55,9 +55,29 @@ cmp_deeply(
                 'opts'        => {},
             }
         },
+        '__MODEL_FIELDS_SORT_ORDERS__' => {
+            'id'              => 0,
+            'model_one_field' => 0,
+            'model_field'     => 0
+        },
         '__ACTIONS__' => {
             'action'       => 'model_action_name',
             'right_action' => 'model_right_action_name'
+        },
+        '__MODEL_FIELDS_INITIALIZED__' => {
+            'id' => {
+                'pk'      => 1,
+                'default' => 1,
+                'db'      => 1
+            },
+            'model_field' => {
+                'db'      => 1,
+                'default' => 1
+            },
+            'model_one_field' => {
+                'db'      => 1,
+                'default' => 1
+            }
         },
         '__EMPTY_NAME__'   => 'model_multistate_empty_name',
         '__MODEL_FIELDS__' => {
@@ -115,6 +135,12 @@ cmp_deeply(
             '0' => {'action' => 1},
             '1' => {'right_action' => 2}
         },
+        '__MODEL_FIELDS_SORT_ORDERS__' => {
+            'model_one_field' => 0,
+            'id'              => 0,
+            'model_field'     => 0,
+            'model_two_field' => 0
+        },
         '__ACTIONS__' => {
             'right_action' => 'model_right_action_name',
             'action'       => 'model_action_name'
@@ -166,6 +192,26 @@ cmp_deeply(
             'model_right_name'     => 'model_right_description',
             'model_one_right_name' => 'model_one_right_description',
             'model_two_right_name' => 'model_two_right_description'
+        },
+        '__MODEL_FIELDS_INITIALIZED__' => {
+            'model_one_field' => {
+                'db'           => 1,
+                'default'      => 1,
+                'check_rights' => ['view__model_one_field']
+            },
+            'model_field' => {
+                'default' => 1,
+                'db'      => 1
+            },
+            'id' => {
+                'db'      => 1,
+                'default' => 1,
+                'pk'      => 1
+            },
+            'model_two_field' => {
+                'default' => 1,
+                'db'      => 1
+            }
         },
         '__RIGHTS__' => {
             'model_one_right_2' => {

@@ -2,8 +2,6 @@ package QBit::Base;
 
 use qbit;
 
-use QBit::Class;
-
 if ($] < 5.008) {
     *_module_to_filename = sub {
         (my $fn = $_[0]) =~ s!::!/!g;
@@ -38,46 +36,45 @@ sub import {
         require $fn;
 
         push @bases, $package;
+
+        my $ip_stash = package_stash($package);
+
+        foreach my $meta (keys(%$ip_stash)) {
+            if (exists($stash->{$meta})) {
+                if (ref($stash->{$meta}) eq 'HASH') {
+                    $stash->{$meta} = clone({%{$ip_stash->{$meta}}, %{$stash->{$meta}}});
+                }
+            } else {
+                $stash->{$meta} = clone($ip_stash->{$meta});
+            }
+        }
     }
+
+    require QBit::Application::Model::DBManager;
 
     {
         no strict 'refs';
         push @{"$package_heir\::ISA"}, @bases;
 
-        *{"${package_heir}::new"} = sub {
-            my ($class, %opts) = @_;
-
-            my $self = QBit::Class::new($class, %opts);
+        *{"${package_heir}::model_fields"} = sub {
+            my ($class, %fields) = @_;
 
             my $stash = package_stash($package_heir);
 
-            foreach my $package (@bases) {
-                package_merge_isa_data(
-                    $package, $stash,
-                    sub {
-                        my ($ipackage, $stash) = @_;
+            QBit::Application::Model::DBManager::model_fields($package_heir, %{$stash->{'__MODEL_FIELDS__'}}, %fields);
+        };
 
-                        my $ip_stash = package_stash($ipackage);
+        *{"${package_heir}::model_filter"} = sub {
+            my ($class, %filter) = @_;
 
-                        foreach my $meta (keys(%$ip_stash)) {
-                            if (exists($stash->{$meta})) {
-                                if (ref($stash->{$meta}) eq 'HASH') {
-                                    $stash->{$meta} = {%{$ip_stash->{$meta}}, %{$stash->{$meta}}};
-                                }
-                            } else {
-                                $stash->{$meta} = $ip_stash->{$meta};
-                            }
-                        }
-                    },
-                    $package
-                );
-            }
+            my $stash = package_stash($package_heir);
 
-            $self->model_fields(%{$stash->{'__MODEL_FIELDS__'}}) if $self->can('model_fields');
-            #it's do not working with multistate_graph
-            #$self->multistate_graph(...)
+            my %filter_def = (
+                db_accessor => $filter{'db_accessor'} // $stash->{'__DB_FILTER_DBACCESSOR__'},
+                fields => {%{$stash->{'__DB_FILTER__'}}, %{$filter{'fields'}}},
+            );
 
-            return $self;
+            QBit::Application::Model::DBManager::model_filter($package_heir, %filter_def);
         };
     }
 }
