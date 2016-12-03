@@ -16,7 +16,7 @@ my %WriteMakefileArgs = (
   "LICENSE" => "gpl",
   "NAME" => "QBit::Base",
   "PREREQ_PM" => {
-    "QBit::Class" => 0,
+    "QBit::Application::Model::DBManager" => 0,
     "qbit" => 0,
     "strict" => 0
   },
@@ -25,14 +25,14 @@ my %WriteMakefileArgs = (
     "QBit::Application" => 0,
     "QBit::Application::Model::DB" => 0,
     "QBit::Application::Model::DB::mysql" => 0,
-    "QBit::Application::Model::DBManager" => 0,
     "QBit::Application::Model::Multistate::DB" => 0,
+    "QBit::Class" => 0,
     "Test::Deep" => 0,
     "Test::More" => 0,
     "base" => 0,
     "lib" => 0
   },
-  "VERSION" => "0.001",
+  "VERSION" => "0.002",
   "test" => {
     "TESTS" => "t/*.t"
   }

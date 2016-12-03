@@ -1,10 +1,32 @@
 ==================================================
-Changes from 2015-11-28 00:00:00 +0000 to present.
+Changes from 2015-12-04 00:00:00 +0000 to present.
 ==================================================
 
 ------------------------------------------
-version 0.001 at 2016-11-27 21:00:51 +0000
+version 0.002 at 2016-12-03 17:13:41 +0000
 ------------------------------------------
+
+  Change: 397b34c56af1c98a1d1524b653950ee38a952560
+  Author: Igor Sverdlov <igor-sverdlov@mail.ru>
+  Date : 2016-12-03 20:12:35 +0000
+
+    Merge branch 'master' of https://github.com/QBitFramework/QBit-Base 
+
+  Change: 64e34fc6562de06894b38f887af9260de1f89815
+  Author: Igor Sverdlov <igor-sverdlov@mail.ru>
+  Date : 2016-12-03 20:11:19 +0000
+
+    fix for new DBManager 
+
+------------------------------------------
+version 0.001 at 2016-11-27 21:01:12 +0000
+------------------------------------------
+
+  Change: 34306e34195daf14f41848add7800580ee2874bb
+  Author: Igor Sverdlov <igor-sverdlov@mail.ru>
+  Date : 2016-11-28 00:01:12 +0000
+
+    Version 0.001 
 
   Change: fd56d114c4dbdadc1b47bb12d188b6de780a29bc
   Author: Igor Sverdlov <igor-sverdlov@mail.ru>
