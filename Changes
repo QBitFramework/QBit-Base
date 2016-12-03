@@ -1,0 +1,29 @@
+==================================================
+Changes from 2015-11-28 00:00:00 +0000 to present.
+==================================================
+
+------------------------------------------
+version 0.001 at 2016-11-27 21:00:51 +0000
+------------------------------------------
+
+  Change: fd56d114c4dbdadc1b47bb12d188b6de780a29bc
+  Author: Igor Sverdlov <igor-sverdlov@mail.ru>
+  Date : 2016-11-27 23:59:11 +0000
+
+    ingore build files 
+
+  Change: c187bb18b85e95e2273c595a8b6a07948db57799
+  Author: Igor Sverdlov <igor-sverdlov@mail.ru>
+  Date : 2016-11-27 23:53:51 +0000
+
+    redefine new 
+
+  Change: 8812744e25356b0a0ca3028684d1381e592ab3a2
+  Author: Igor Sverdlov <igor-sverdlov@mail.ru>
+  Date : 2016-11-27 23:23:09 +0000
+
+    first commit 
+
+================
+End of releases.
+================
